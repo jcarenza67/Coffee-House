@@ -93,18 +93,18 @@ class InventoryControl extends React.Component {
     this.setState(prevState => {
       const updatedInventoryList = prevState.mainInventoryList.map(inventory => {
         if (inventory.id === id) {
-          if (inventory.quantity > 0) {
+          if (inventory.quantity >= 5) {
             return { ...inventory, quantity: inventory.quantity - 5 };
           } else {
-            alert("No more coffee to sell!");
+            alert("Not enough inventory to sell!");
           }
         }
         return inventory;
       });
-  
-      return {
+
+      return{
         mainInventoryList: updatedInventoryList,
-        selectedInventory: null
+        selectedInventory: { ...prevState.selectedInventory, quantity: updatedInventoryList.find(inventory => inventory.id === id).quantity }
       };
     });
   };
@@ -113,16 +113,14 @@ class InventoryControl extends React.Component {
     this.setState(prevState => {
       const updatedInventoryList = prevState.mainInventoryList.map(inventory => {
         if (inventory.id === id) {
-          if (inventory.quantity > 0) {
             return { ...inventory, quantity: inventory.quantity + 5 };
           }
-        }
         return inventory;
       });
   
       return {
         mainInventoryList: updatedInventoryList,
-        selectedInventory: null
+        selectedInventory: { ...prevState.selectedInventory, quantity: updatedInventoryList.find(inventory => inventory.id === id).quantity }
       };
     });
   };
