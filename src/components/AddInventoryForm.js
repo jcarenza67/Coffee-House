@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
 import ReusableForm from './ReusableForm';
+import '../index.css'
 
 function AddInventoryForm(props) {
 
@@ -20,9 +21,12 @@ function AddInventoryForm(props) {
       <>
         <ReusableForm
           formSubmissionHandler={handleNewInventoryFormSubmission}
-          buttonText="Add to Inventory" />
+          buttonText="Add to Inventory"
+          buttonClass="custom-button"
+        />
       </>
     );
+    
   }
 
   AddInventoryForm.propTypes = {

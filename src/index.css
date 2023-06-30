@@ -11,3 +11,77 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.inventory-item {
+  background-color: #f8f8f8;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.inventory-item h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.inventory-item .card-text {
+  margin-bottom: 5px;
+}
+
+.inventory-item button {
+  margin-top: 10px;
+}
+
+.inventory-item .card-text span {
+  font-weight: bold;
+}
+
+.inventory-item .card-text .price {
+  color: #007bff;
+}
+
+.inventory-item .card-text .quantity {
+  color: #28a745;
+}
+
+.inventory-item .card-text .quantity span {
+  font-weight: normal;
+}
+
+.inventory-item .card-text .quantity span.out-of-stock {
+  color: #dc3545;
+}
+
+.inventory-item .card-text .quantity span.low-stock {
+  color: #ffc107;
+}
+
+.inventory-item .card-text .quantity span.in-stock {
+  color: #28a745;
+}
+
+.brand {
+  font-size: 30px;
+  font-weight: bold;
+  color: #f0f1f3;
+  margin-left: 10px;
+}
+
+.navbar {
+  background-color: #343a40;
+}
+
+.custom-button {
+  background-color: #6d4c32;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.custom-button:hover {
+  background-color: #4a3524;
+}

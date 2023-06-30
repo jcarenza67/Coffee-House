@@ -1,30 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Card, Button } from 'react-bootstrap';
 
-function InventoryDetail({ inventory, 
-  onClickingDelete, 
-  onClickingEdit, 
-  onClickingSell, 
-  onClickingAdd, 
-  onClickingBurlap }) {
+function InventoryDetail({ inventory, onClickingDelete, onClickingEdit, onClickingSell, onClickingAdd, onClickingBurlap }) {
   return (
-    <>
-      <h1>Item Detail</h1>
-      <h3>Name: {inventory.name}</h3>
-      <p>Origin: {inventory.origin}</p>
-      <p>Roast: {inventory.roast}</p>
-      <p>Price: ${inventory.price} a sack(130lbs)</p>
-      <p>Quantity: {inventory.quantity}lbs</p>
-      <p>Burlap: {inventory.burlap}</p>
-      <hr/>
-
-      <button onClick={ onClickingEdit }>Update Item</button>
-      <button onClick={()=> onClickingDelete(inventory.id) }>Remove Item</button>
-      <button onClick={()=> onClickingSell(inventory.id) }>Sell 1 pound</button>
-      <button onClick={()=> onClickingAdd(inventory.id)}>Add 1 pound</button>
-      <button onClick={()=> onClickingBurlap(inventory.id)}>Add Burlap</button>
-      <hr/>
-    </>
+    <div className="container">
+      <h1 className="mb-4">Item Detail</h1>
+      <Card>
+        <Card.Body>
+          <Card.Title>Name: {inventory.name}</Card.Title>
+          <Card.Text>Origin: {inventory.origin}</Card.Text>
+          <Card.Text>Roast: {inventory.roast}</Card.Text>
+          <Card.Text>Price: ${inventory.price} a sack (130lbs)</Card.Text>
+          <Card.Text>Quantity: {inventory.quantity}lbs</Card.Text>
+          <Card.Text>Burlap: {inventory.burlap}</Card.Text>
+        </Card.Body>
+        <Card.Footer>
+          <Button variant="primary" className="me-2" onClick={onClickingEdit}>Update Item</Button>
+          <Button variant="danger" className="me-2" onClick={() => onClickingDelete(inventory.id)}>Remove Item</Button>
+          <Button variant="success" className="me-2" onClick={() => onClickingSell(inventory.id)}>Sell 1 pound</Button>
+          <Button variant="info" className="me-2" onClick={() => onClickingAdd(inventory.id)}>Add 1 pound</Button>
+          <Button variant="secondary" onClick={() => onClickingBurlap(inventory.id)}>Add Burlap</Button>
+        </Card.Footer>
+      </Card>
+    </div>
   );
 }
 
