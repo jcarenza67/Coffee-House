@@ -15,23 +15,24 @@ class InventoryControl extends React.Component {
       mainInventoryList: [
         {
           name: "Sumatra Light Roast",
-          brand: "Java Journeys",
-          flavor: "Light",
+          origin: "Sumatra",
+          roast: "Light",
+          price: 120,
           quantity: 10,
           id: v4()
         },
         {
           name: "Brazilian Decaf",
-          brand: "Rio Roasters",
-          flavor: "Decaf",
-          quantity: 10,
+          origin: "Brazil",
+          roast: "Decaf",
+          quantity: 110,
           id: v4()
         },
         {
           name: "Columbian Medium Roast",
-          brand: "Columbia Coffee Inc.",
-          flavor: "Medium",
-          quantity: 10,
+          origin: "Columbia",
+          roast: "Medium",
+          quantity: 190,
           id: v4()
         }
       ],
@@ -71,3 +72,103 @@ class InventoryControl extends React.Component {
                   selectedInventory: null});
   }
 
+  handleEditClick = () => {
+    this.setState({editing: true});
+  }
+
+  handleEditingInventoryInList = (inventoryToEdit) => {
+    const editedMainInventoryList = this.state.mainInventoryList
+      .filter(inventory => inventory.id !== this.state.selectedInventory.id)
+      .concat(inventoryToEdit);
+    this.setState({
+        mainInventoryList: editedMainInventoryList,
+        editing: false,
+        selectedInventory: null
+      });
+  }
+
+  handleSellClick = (id) => {
+    const selectedInventory = this.state.mainInventoryList.filter(inventory => inventory.id === id)[0];
+    if (selectedInventory.quantity > 0) {
+      const newQuantity = Object.assign({}, selectedInventory, {quantity: selectedInventory.quantity - 1});
+      const editedMainInventoryList = this.state.mainInventoryList
+        .filter(inventory => inventory.id !== id)
+        .concat(newQuantity);
+      this.setState({
+          mainInventoryList: editedMainInventoryList,
+          selectedInventory: null
+      });
+    } else {
+      alert("No more coffee to sell!");
+    }
+  }
+
+  renderEditForm() {
+    return (
+      <EditInventoryForm
+        inventory = {this.state.selectedInventory}
+        onEditInventory = {this.handleEditingInventoryInList}
+      />
+    );
+  }
+
+  renderInventoryDetail() {
+    return (
+      <InventoryDetail
+        inventory = {this.state.selectedInventory}
+        onClickingDelete = {this.handleDeletingInventory}
+        onClickingEdit = {this.handleEditClick}
+        onClickingSell = {this.handleSellClick}
+      />
+    );
+  }
+
+  renderInventoryForm() {
+    return (
+      <AddInventoryForm
+        onNewInventoryCreation={this.handleAddingNewInventoryToList}
+      />
+    );
+  }
+
+  renderInventoryList() {
+    return (
+      <InventoryList
+        inventoryList={this.state.mainInventoryList}
+        onInventorySelection={this.handleChangingSelectedInventory}
+      />
+    );
+  }
+
+  render() {
+    let currentlyVisibleState = null;
+    let buttonText = null;
+
+    if (this.state.editing) {
+      currentlyVisibleState = this.renderEditForm();
+      buttonText = "Return to Inventory List";
+    } else if (this.state.selectedInventory != null) {
+      currentlyVisibleState = this.renderInventoryDetail();
+      buttonText = "Return to Inventory List";
+    } else if (this.state.formVisibleOnPage) {
+      currentlyVisibleState = this.renderInventoryForm();
+      buttonText = "Return to Inventory List";
+    } else {
+      currentlyVisibleState = this.renderInventoryList();
+      buttonText = "Add Inventory";
+    }
+
+    return (
+      <React.Fragment>
+        {currentlyVisibleState}
+        <button onClick={this.handleClick}>{buttonText}</button>
+      </React.Fragment>
+    );
+  }
+}
+
+InventoryControl.propTypes = {
+  mainInventoryList: PropTypes.array
+};
+
+export default InventoryControl;
