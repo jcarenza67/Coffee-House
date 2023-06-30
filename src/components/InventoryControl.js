@@ -19,6 +19,7 @@ class InventoryControl extends React.Component {
           roast: "Light",
           price: 120,
           quantity: 10,
+          burlap: 0,
           id: v4()
         },
         {
@@ -27,6 +28,7 @@ class InventoryControl extends React.Component {
           roast: "Decaf",
           price: 100,
           quantity: 110,
+          burlap: 0,
           id: v4()
         },
         {
@@ -35,6 +37,7 @@ class InventoryControl extends React.Component {
           roast: "Medium",
           price: 110,
           quantity: 190,
+          burlap: 1,
           id: v4()
         }
       ],
@@ -93,34 +96,57 @@ class InventoryControl extends React.Component {
     this.setState(prevState => {
       const updatedInventoryList = prevState.mainInventoryList.map(inventory => {
         if (inventory.id === id) {
-          if (inventory.quantity >= 5) {
-            return { ...inventory, quantity: inventory.quantity - 5 };
-          } else {
+          const updatedQuantity = inventory.quantity - 1;
+          const updatedBurlap = Math.floor(updatedQuantity / 130);
+          if (updatedQuantity < 0) {
             alert("Not enough inventory to sell!");
+            return inventory;
           }
+          return { ...inventory, quantity: updatedQuantity, burlap: updatedBurlap };
         }
-        return inventory;
-      });
-
-      return{
-        mainInventoryList: updatedInventoryList,
-        selectedInventory: { ...prevState.selectedInventory, quantity: updatedInventoryList.find(inventory => inventory.id === id).quantity }
-      };
-    });
-  };
-
-  handleAddingQuantity = (id) => {
-    this.setState(prevState => {
-      const updatedInventoryList = prevState.mainInventoryList.map(inventory => {
-        if (inventory.id === id) {
-            return { ...inventory, quantity: inventory.quantity + 5 };
-          }
         return inventory;
       });
   
       return {
         mainInventoryList: updatedInventoryList,
-        selectedInventory: { ...prevState.selectedInventory, quantity: updatedInventoryList.find(inventory => inventory.id === id).quantity }
+        selectedInventory: updatedInventoryList.find(inventory => inventory.id === id)
+      };
+    });
+  };
+  
+  
+  handleAddingQuantity = (id) => {
+    this.setState(prevState => {
+      const updatedInventoryList = prevState.mainInventoryList.map(inventory => {
+        if (inventory.id === id) {
+          const updatedQuantity = inventory.quantity + 1;
+          const updatedBurlap = Math.floor(updatedQuantity / 130);
+          return { ...inventory, quantity: updatedQuantity, burlap: updatedBurlap };
+          }
+        return inventory;
+      });
+
+      return {
+        mainInventoryList: updatedInventoryList,
+        selectedInventory: updatedInventoryList.find(inventory => inventory.id === id)
+      };
+    });
+  };
+
+  handleAddingBurlap = (id) => {
+    this.setState(prevState => {
+      const updatedInventoryList = prevState.mainInventoryList.map(inventory => {
+        if (inventory.id === id) {
+          const updatedBurlap = inventory.burlap + 1;
+          const updatedQuantity = inventory.quantity + 130;
+          return { ...inventory, burlap: updatedBurlap, quantity: updatedQuantity };
+        }
+        return inventory;
+      });
+  
+      return {
+        mainInventoryList: updatedInventoryList,
+        selectedInventory: updatedInventoryList.find(inventory => inventory.id === id)
       };
     });
   };
@@ -143,6 +169,7 @@ class InventoryControl extends React.Component {
         onClickingEdit = {this.handleEditClick}
         onClickingSell = {this.handleSellClick}
         onClickingAdd = {this.handleAddingQuantity}
+        onClickingBurlap = {this.handleAddingBurlap}
       />
     );
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function InventoryItem({ inventory, onInventorySelection }) {
-  const { id, name, origin, roast, price, quantity } = inventory;
+  const { id, name, origin, roast, price, quantity, burlap } = inventory;
 
   const handleSelection = () => {
     onInventorySelection(id);
@@ -15,6 +15,7 @@ function InventoryItem({ inventory, onInventorySelection }) {
       <p>Roast: {roast}</p>
       <p>Price: ${price}</p>
       <p>Quantity: {quantity}</p>
+      <p>Burlap:{burlap}</p>
       <button onClick={handleSelection}>Select</button>
     </div>
   );
