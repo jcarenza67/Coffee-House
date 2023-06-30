@@ -90,20 +90,25 @@ class InventoryControl extends React.Component {
   }
 
   handleSellClick = (id) => {
-    const selectedInventory = this.state.mainInventoryList.filter(inventory => inventory.id === id)[0];
-    if (selectedInventory.quantity > 0) {
-      const newQuantity = Object.assign({}, selectedInventory, {quantity: selectedInventory.quantity - 1});
-      const editedMainInventoryList = this.state.mainInventoryList
-        .filter(inventory => inventory.id !== id)
-        .concat(newQuantity);
-      this.setState({
-          mainInventoryList: editedMainInventoryList,
-          selectedInventory: null
+    this.setState(prevState => {
+      const updatedInventoryList = prevState.mainInventoryList.map(inventory => {
+        if (inventory.id === id) {
+          if (inventory.quantity > 0) {
+            return { ...inventory, quantity: inventory.quantity - 1 };
+          } else {
+            alert("No more coffee to sell!");
+          }
+        }
+        return inventory;
       });
-    } else {
-      alert("No more coffee to sell!");
-    }
-  }
+  
+      return {
+        mainInventoryList: updatedInventoryList,
+        selectedInventory: null
+      };
+    });
+  };
+  
 
   renderEditForm() {
     return (
