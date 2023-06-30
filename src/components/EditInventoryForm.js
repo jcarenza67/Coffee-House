@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ReusableForm from "./ReusableForm";
+import ReusableForm2 from "./ReusableForm2";
 
 function EditInventoryForm(props) {
 
@@ -14,13 +14,14 @@ function EditInventoryForm(props) {
       roast: event.target.roast.value,
       price: event.target.price.value,
       quantity: event.target.quantity.value,
+      burlap: event.target.burlap.value,
       id: inventory.id
     });
   }
 
   return (
     <>
-      <ReusableForm
+      <ReusableForm2
         formSubmissionHandler={handleEditInventoryFormSubmission}
         buttonText="Update Inventory"
         defaultValues={inventory} />
@@ -29,7 +30,7 @@ function EditInventoryForm(props) {
 }
 
 EditInventoryForm.propTypes = {
-  onEditInventory: PropTypes.func
+  onEditInventory: PropTypes.func.isRequired
 };
 
 export default EditInventoryForm;

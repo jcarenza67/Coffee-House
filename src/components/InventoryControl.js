@@ -91,16 +91,38 @@ class InventoryControl extends React.Component {
     this.setState({editing: true});
   }
 
-  handleEditingInventoryInList = (inventoryToEdit) => {
-    const editedMainInventoryList = this.state.mainInventoryList
-      .filter(inventory => inventory.id !== this.state.selectedInventory.id)
-      .concat(inventoryToEdit);
+  handleEditingInventoryInList = (updatedInventory) => {
+    if (!updatedInventory.name || 
+      !updatedInventory.origin ||
+      !updatedInventory.roast || 
+      !updatedInventory.price || 
+      !updatedInventory.quantity || 
+      !updatedInventory.burlap) {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
+  
+    const updatedInventoryWithZeroValues = {
+      ...updatedInventory,
+      quantity: 0,
+      burlap: 0
+    };
+  
+    const updatedMainInventoryList = this.state.mainInventoryList.map((inventory) => {
+      if (inventory.id === updatedInventory.id) {
+        return updatedInventoryWithZeroValues;
+      }
+      return inventory;
+    });
+  
     this.setState({
-        mainInventoryList: editedMainInventoryList,
-        editing: false,
-        selectedInventory: null
-      });
-  }
+      mainInventoryList: updatedMainInventoryList,
+      editing: false,
+      selectedInventory: null
+    });
+  };
+  
+  
 
   handleSellClick = (id) => {
     this.setState(prevState => {

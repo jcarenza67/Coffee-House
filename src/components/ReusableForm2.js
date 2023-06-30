@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function ReusableForm(props) {
+function ReusableForm2(props) {
   return (
     <>
       <form onSubmit={props.formSubmissionHandler}>
@@ -21,15 +21,23 @@ function ReusableForm(props) {
           type="number"
           name="price"
           placeholder="Price" />
+        <input
+          type="number"
+          name="quantity"
+          placeholder="Quantity" />
+        <input
+          type="number"
+          name="burlap"
+          placeholder="Burlap" />
         <button className="custom-button" type="submit">{props.buttonText}</button>
       </form>
     </>
   );
 }
 
-ReusableForm.propTypes = {
+ReusableForm2.propTypes = {
   formSubmissionHandler: PropTypes.func.isRequired,
   buttonText: PropTypes.string.isRequired
 };
 
-export default ReusableForm;
+export default ReusableForm2;
