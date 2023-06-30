@@ -1,13 +1,12 @@
 import React from 'react';
 import InventoryControl from './InventoryControl';
+import Header from './Header';
 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Inventory Management</h1>
-      </header>
+    <div>
+      <Header />
       <InventoryControl />
     </div>
   );

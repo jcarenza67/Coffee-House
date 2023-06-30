@@ -25,6 +25,7 @@ class InventoryControl extends React.Component {
           name: "Brazilian Decaf",
           origin: "Brazil",
           roast: "Decaf",
+          price: 100,
           quantity: 110,
           id: v4()
         },
@@ -32,6 +33,7 @@ class InventoryControl extends React.Component {
           name: "Columbian Medium Roast",
           origin: "Columbia",
           roast: "Medium",
+          price: 110,
           quantity: 190,
           id: v4()
         }
