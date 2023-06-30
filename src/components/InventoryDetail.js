@@ -13,8 +13,8 @@ function InventoryDetail({ inventory, onClickingDelete, onClickingEdit, onClicki
 
       <button onClick={ onClickingEdit }>Update Item</button>
       <button onClick={()=> onClickingDelete(inventory.id) }>Remove Item</button>
-      <button onClick={()=> onClickingSell(inventory.id) }>Sell one pound</button>
-      <button onClick={()=> onClickingAdd(inventory.id)}>Add one pound</button>
+      <button onClick={()=> onClickingSell(inventory.id) }>Sell 5 pounds</button>
+      <button onClick={()=> onClickingAdd(inventory.id)}>Add 5 pounds</button>
       <hr/>
     </>
   );

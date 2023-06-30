@@ -94,7 +94,7 @@ class InventoryControl extends React.Component {
       const updatedInventoryList = prevState.mainInventoryList.map(inventory => {
         if (inventory.id === id) {
           if (inventory.quantity > 0) {
-            return { ...inventory, quantity: inventory.quantity - 1 };
+            return { ...inventory, quantity: inventory.quantity - 5 };
           } else {
             alert("No more coffee to sell!");
           }
@@ -114,7 +114,7 @@ class InventoryControl extends React.Component {
       const updatedInventoryList = prevState.mainInventoryList.map(inventory => {
         if (inventory.id === id) {
           if (inventory.quantity > 0) {
-            return { ...inventory, quantity: inventory.quantity + 1 };
+            return { ...inventory, quantity: inventory.quantity + 5 };
           }
         }
         return inventory;
