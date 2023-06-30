@@ -21,10 +21,6 @@ function ReusableForm(props) {
           type="number"
           name="price"
           placeholder="Price" />
-        <input
-          type="number"
-          name="quantity"
-          placeholder="Quantity" />
         <button type="submit">{props.buttonText}</button>
       </form>
     </>

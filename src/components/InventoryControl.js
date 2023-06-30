@@ -61,10 +61,20 @@ class InventoryControl extends React.Component {
   }
   
   handleAddingNewInventoryToList = (newInventory) => {
-    const newMainInventoryList = this.state.mainInventoryList.concat(newInventory);
-    this.setState({mainInventoryList: newMainInventoryList,
-                  formVisibleOnPage: false });
-  }
+    const newInventoryItem = {
+      ...newInventory,
+      quantity: 0,
+      burlap: 0,
+      id: v4(),
+    };
+  
+    this.setState((prevState) => ({
+      mainInventoryList: [...prevState.mainInventoryList, newInventoryItem],
+      formVisibleOnPage: false,
+    }));
+  };
+  
+  
 
   handleChangingSelectedInventory = (id) => {
     const selectedInventory = this.state.mainInventoryList.filter(inventory => inventory.id === id)[0];

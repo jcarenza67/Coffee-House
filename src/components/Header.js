@@ -7,9 +7,10 @@ function Header() {
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/inventory">Inventory</a></li>
+          <p>(will refresh page if clicked)</p>
         </ul>
       </nav>
-      <h1>My Coffee Shop</h1>
+      <h1>Joe's Coffee Shop</h1>
     </header>
   );
 }
