@@ -32,7 +32,7 @@ _This is a mock coffee house inventory website. It allows a user to **CRUD** cof
 
 # Known Bugs
 
-* _No known bugs_
+* _When you try to sell coffee at 0 quantity the alert window shows up twice_
 
 # License
 
