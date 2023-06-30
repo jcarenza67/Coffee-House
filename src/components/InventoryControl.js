@@ -108,6 +108,24 @@ class InventoryControl extends React.Component {
       };
     });
   };
+
+  handleAddingQuantity = (id) => {
+    this.setState(prevState => {
+      const updatedInventoryList = prevState.mainInventoryList.map(inventory => {
+        if (inventory.id === id) {
+          if (inventory.quantity > 0) {
+            return { ...inventory, quantity: inventory.quantity + 1 };
+          }
+        }
+        return inventory;
+      });
+  
+      return {
+        mainInventoryList: updatedInventoryList,
+        selectedInventory: null
+      };
+    });
+  };
   
 
   renderEditForm() {
@@ -126,6 +144,7 @@ class InventoryControl extends React.Component {
         onClickingDelete = {this.handleDeletingInventory}
         onClickingEdit = {this.handleEditClick}
         onClickingSell = {this.handleSellClick}
+        onClickingAdd = {this.handleAddingQuantity}
       />
     );
   }
