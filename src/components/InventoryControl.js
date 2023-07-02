@@ -103,9 +103,7 @@ class InventoryControl extends React.Component {
     if (!updatedInventory.name || 
       !updatedInventory.origin ||
       !updatedInventory.roast || 
-      !updatedInventory.price || 
-      !updatedInventory.quantity || 
-      !updatedInventory.burlap) {
+      !updatedInventory.price) {
       alert("Please fill in all fields before submitting.");
       return;
     }

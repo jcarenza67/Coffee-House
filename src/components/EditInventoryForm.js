@@ -13,8 +13,6 @@ function EditInventoryForm(props) {
       origin: event.target.origin.value,
       roast: event.target.roast.value,
       price: event.target.price.value,
-      quantity: event.target.quantity.value,
-      burlap: event.target.burlap.value,
       id: inventory.id
     });
   }

@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 function ReusableForm2(props) {
   return (
     <>
-      <form onSubmit={props.formSubmissionHandler}>
+    <br />
+      <form className="form2" onSubmit={props.formSubmissionHandler}>
         <input
           type="text"
           name="name"
@@ -20,17 +21,11 @@ function ReusableForm2(props) {
         <input
           type="number"
           name="price"
-          placeholder="Price" />
-        <input
-          type="number"
-          name="quantity"
-          placeholder="Quantity" />
-        <input
-          type="number"
-          name="burlap"
-          placeholder="Burlap" />
+          placeholder="Price per burlap" />
         <button className="custom-button" type="submit">{props.buttonText}</button>
       </form>
+      <br />
+      <p><strong>!please update the quantity and burlaps in the details please!</strong></p>
     </>
   );
 }

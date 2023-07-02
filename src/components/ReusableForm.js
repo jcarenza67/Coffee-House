@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 function ReusableForm(props) {
   return (
     <>
-      <form onSubmit={props.formSubmissionHandler}>
+      <form className="form2" onSubmit={props.formSubmissionHandler}>
         <input
           type="text"
           name="name"
