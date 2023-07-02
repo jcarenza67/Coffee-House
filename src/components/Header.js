@@ -17,6 +17,8 @@ function Header() {
           <NavDropdown.Item href="/add">Add Inventory</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href="/sales">Sales Report</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href="/sales"><strong>***This Navbar is just for show and doesnt do anything***</strong></NavDropdown.Item>
         </NavDropdown>
       </Nav>
     </Navbar>

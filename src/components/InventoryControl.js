@@ -61,6 +61,14 @@ class InventoryControl extends React.Component {
   }
   
   handleAddingNewInventoryToList = (newInventory) => {
+    if (!newInventory.name || 
+      !newInventory.origin ||
+      !newInventory.roast || 
+      !newInventory.price ) {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
+
     const newInventoryItem = {
       ...newInventory,
       quantity: 0,
